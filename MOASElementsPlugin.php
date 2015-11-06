@@ -44,7 +44,6 @@ class MOASElementsPlugin extends Omeka_Plugin_AbstractPlugin
         $elementSetTable = $this->_db->getTable('ElementSet');
 
         // deleting ElementSet also deletes any attached elements.
-
         $est = $elementSetTable->findByName($this->_elementSetMetadata['name']);
         if ($est !== null) {
             $est->delete();
