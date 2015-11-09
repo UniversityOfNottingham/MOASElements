@@ -25,5 +25,9 @@ $elements = array(
     array(
         'name'          => "Related Item Tag",
         'description'   => "This allows MOAS to provide related items in appropriate places by showing items tagged in a similar fashion."
+    ),
+    array(
+        'name'          => "Theme",
+        'description'   => "This allows MOAS to provide related items in appropriate places by showing items tagged in a similar fashion."
     )
 );
