@@ -29,5 +29,13 @@ $elements = array(
     array(
         'name'          => "Theme",
         'description'   => "This allows MOAS to provide related items in appropriate places by showing items tagged in a similar fashion."
+    ),
+    array(
+        'name'          => "Download Rights",
+        'description'   => "The download rights for this item."
+    ),
+    array(
+        'name'          => "Contact",
+        'description'   => "An email address or URL for the item owner."
     )
 );
