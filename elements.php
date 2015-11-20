@@ -35,7 +35,7 @@ $elements = array(
         'description'   => "The download rights for this item."
     ),
     array(
-        'name'          => "Contact",
+        'name'          => "Download Contact",
         'description'   => "An email address or URL for the item owner."
     )
 );
