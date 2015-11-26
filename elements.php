@@ -37,5 +37,9 @@ $elements = array(
     array(
         'name'          => "Download Contact",
         'description'   => "An email address or URL for the item owner."
+    ),
+    array(
+        'name'          => "Funding Body",
+        'description'   => "The organisation that funded this item."
     )
 );
