@@ -19,6 +19,10 @@ $elements = array(
         'description'   => "The Latitude and Longitude pair related to the item, comma separated. E.g. '53.2342, 0.2343'"
     ),
     array(
+        'name'          => "Map Zoom Level",
+        'description'   => "The zoom level for the item map, where '1' is global, '10' would show a large city and '18' is street level."
+    ),
+    array(
         'name'          => "Organisation",
         'description'   => "The organisation responsible for this item."
     ),
