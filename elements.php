@@ -3,7 +3,7 @@
 $elementSetMetadata = array(
     'name'        => "MOAS Elements",
     'description' => "Elements required for MOAS functionality",
-    'record_type'   => "Item"
+    'record_type'   => null
 );
 $elements = array(
     array(
@@ -45,5 +45,9 @@ $elements = array(
     array(
         'name'          => "Funding Body",
         'description'   => "The organisation that funded this item."
+    ),
+    array(
+        'name'          => "URL Slug",
+        'description'   => "Slug to use for short URL's"
     )
 );
