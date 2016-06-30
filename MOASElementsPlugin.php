@@ -68,6 +68,7 @@ class MOASElementsPlugin extends Omeka_Plugin_AbstractPlugin
             case '1.0.0':
                 // code to upgrade from 1.0.0 to 1.1.0
             default :
+                $this->_updateElementSet();
                 $this->_updateElements();
         }
     }
@@ -95,6 +96,23 @@ class MOASElementsPlugin extends Omeka_Plugin_AbstractPlugin
             // if we get here it means we didn't find this element in the database.
             $elementSet->addElements(array($index => $element));
         });
+
+        $elementSet->save();
+    }
+
+    /**
+     * Updates the element information - record type and description only
+     */
+    private function _updateElementSet()
+    {
+        // get database records.
+        /** @var Table_ElementSet $elementSetTable */
+        $elementSetTable = $this->_db->getTable('ElementSet');
+        /** @var ElementSet $elementSet */
+        $elementSet = $elementSetTable->findByName($this->_elementSetMetadata['name']);
+
+        $elementSet->record_type = $this->_elementSetMetadata['record_type'];
+        $elementSet->description = $this->_elementSetMetadata['description'];
 
         $elementSet->save();
     }
