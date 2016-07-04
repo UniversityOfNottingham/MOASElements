@@ -48,6 +48,6 @@ $elements = array(
     ),
     array(
         'name'          => "URL Slug",
-        'description'   => "Slug to use for short URL's"
+        'description'   => "Slug to use for short URL's. Enter your own or generate one based on the items title."
     )
 );
