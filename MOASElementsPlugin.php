@@ -122,24 +122,31 @@ class MOASElementsPlugin extends Omeka_Plugin_AbstractPlugin
     {
         $elementSet = $this->_getElementSet();
 
-        // Remove the existing element ordering
-        $this->_db->update(
-            $this->_db->Element,
-            array('order' => null),
-            array('element_set_id = ?' => $elementSet->id)
-        );
-        
-        $elements = $elementSet->getElements();
-        // walk the MOAS element array and add where needed.
-        array_walk($this->_elements, function($element) use ($elements) {
-            /** @var Element $dbElement */
-            foreach ($elements as $dbElement) {
-                if ($element['name'] === $dbElement->name) {
-                    $dbElement->setOrder($element['order']);
-                    $dbElement->save();
+        $this->_db->beginTransaction();
+
+        try {
+            // Remove the existing element ordering
+            $this->_db->update(
+                $this->_db->Element,
+                array('order' => null),
+                array('element_set_id = ?' => $elementSet->id)
+            );
+
+            $elements = $elementSet->getElements();
+            // walk the MOAS element array and add where needed.
+            array_walk($this->_elements, function ($element) use ($elements) {
+                /** @var Element $dbElement */
+                foreach ($elements as $dbElement) {
+                    if ($element['name'] === $dbElement->name) {
+                        $dbElement->setOrder($element['order']);
+                        $dbElement->save();
+                    }
                 }
-            }
-        });
+            });
+            $this->_db->commit();
+        } catch (Exception $e) {
+            $this->_db->rollBack();
+        }
     }
 
     /**
