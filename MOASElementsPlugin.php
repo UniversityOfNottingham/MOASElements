@@ -17,6 +17,9 @@ class MOASElementsPlugin extends Omeka_Plugin_AbstractPlugin
         'upgrade'
     );
 
+    private $_elements;
+    private $_elementSetMetadata;
+
     public function __construct()
     {
         parent::__construct();
@@ -33,6 +36,7 @@ class MOASElementsPlugin extends Omeka_Plugin_AbstractPlugin
     public function hookInstall()
     {
         insert_element_set($this->_elementSetMetadata, $this->_elements);
+        $this->_reorderElements();
     }
 
     /**
@@ -70,6 +74,7 @@ class MOASElementsPlugin extends Omeka_Plugin_AbstractPlugin
             default :
                 $this->_updateElementSet();
                 $this->_updateElements();
+                $this->_reorderElements();
         }
     }
 
@@ -78,11 +83,7 @@ class MOASElementsPlugin extends Omeka_Plugin_AbstractPlugin
      */
     private function _updateElements($remove = false)
     {
-        // get database records.
-        /** @var Table_ElementSet $elementSetTable */
-        $elementSetTable = $this->_db->getTable('ElementSet');
-        /** @var ElementSet $elementSet */
-        $elementSet = $elementSetTable->findByName($this->_elementSetMetadata['name']);
+        $elementSet = $this->_getElementSet();
         $elements = $elementSet->getElements();
 
         // walk the MOAS element array and add where needed.
@@ -101,19 +102,61 @@ class MOASElementsPlugin extends Omeka_Plugin_AbstractPlugin
     }
 
     /**
-     * Updates the element information - record type and description only
+     * Updates the element set information - record type and description only
      */
     private function _updateElementSet()
     {
-        // get database records.
-        /** @var Table_ElementSet $elementSetTable */
-        $elementSetTable = $this->_db->getTable('ElementSet');
-        /** @var ElementSet $elementSet */
-        $elementSet = $elementSetTable->findByName($this->_elementSetMetadata['name']);
+        $elementSet = $this->_getElementSet();
 
         $elementSet->record_type = $this->_elementSetMetadata['record_type'];
         $elementSet->description = $this->_elementSetMetadata['description'];
 
         $elementSet->save();
+    }
+
+
+    /**
+     * Updates the elements ordering within the element set
+     */
+    private function _reorderElements()
+    {
+        $elementSet = $this->_getElementSet();
+
+        $this->_db->beginTransaction();
+
+        try {
+            // Remove the existing element ordering
+            $this->_db->update(
+                $this->_db->Element,
+                array('order' => null),
+                array('element_set_id = ?' => $elementSet->id)
+            );
+
+            $elements = $elementSet->getElements();
+            // walk the MOAS element array and add where needed.
+            array_walk($this->_elements, function ($element) use ($elements) {
+                /** @var Element $dbElement */
+                foreach ($elements as $dbElement) {
+                    if ($element['name'] === $dbElement->name) {
+                        $dbElement->setOrder($element['order']);
+                        $dbElement->save();
+                    }
+                }
+            });
+            $this->_db->commit();
+        } catch (Exception $e) {
+            $this->_db->rollBack();
+        }
+    }
+
+    /**
+     * Get the MOAS element set
+     *
+     * @return ElementSet
+     */
+    private function _getElementSet()
+    {
+        $elementSetTable = $this->_db->getTable('ElementSet');
+        return $elementSetTable->findByName($this->_elementSetMetadata['name']);
     }
 }
