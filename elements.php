@@ -3,7 +3,7 @@
 $elementSetMetadata = array(
     'name'        => "MOAS Elements",
     'description' => "Elements required for MOAS functionality",
-    'record_type'   => null
+    'record_type' => "Item"
 );
 $elements = array(
     array(
