@@ -66,4 +66,94 @@ $elements = array(
         'description'   => "Slug to use for short URL's. Enter your own or generate one based on the items title.",
         'order'         => 1
     ),
+    array(
+        'name'          => "Common Name",
+        'description'   => "The commonly used name for the fish species, e.g. Cod etc.",
+        'order'         => 13
+    ),
+    array(
+        'name'          => "Latin Name",
+        'description'   => "The full Latin name for the fish species.",
+        'order'         => 14
+    ),
+    array(
+        'name'          => "Genus",
+        'description'   => "The Latin family name for the fish genus.",
+        'order'         => 15
+    ),
+    array(
+        'name'          => "Environment",
+        'description'   => "The type of water the fish is found in.",
+        'order'         => 16
+    ),
+    array(
+        'name'          => "Behaviour",
+        'description'   => "Migratory behaviour.",
+        'order'         => 17
+    ),
+    array(
+        'name'          => "Habitat",
+        'description'   => "Which part of the water the fish lives in.",
+        'order'         => 18
+    ),
+    array(
+        'name'          => "Distribution",
+        'description'   => "The regions of the world where the fish are commonly found.",
+        'order'         => 19
+    ),
+    array(
+        'name'          => "Bone",
+        'description'   => "Which skeletal element (or bone) it is.",
+        'order'         => 20
+    ),
+    array(
+        'name'          => "Head or Body",
+        'description'   => "Where the bone is found in the skeleton.",
+        'order'         => 21
+    ),
+    array(
+        'name'          => "Bone Location",
+        'description'   => "Which skeletal region the bone is part of.",
+        'order'         => 22
+    ),
+    array(
+        'name'          => "Shape",
+        'description'   => "",
+        'order'         => 23
+    ),
+    array(
+        'name'          => "Side",
+        'description'   => "Which side of the fish the bone comes from.",
+        'order'         => 24
+    ),
+    array(
+        'name'          => "View",
+        'description'   => "The angle from which the bone is being viewed in the image.",
+        'order'         => 24
+    ),
+    array(
+        'name'          => "Size",
+        'description'   => "The size of the fish if known.",
+        'order'         => 25
+    ),
+    array(
+        'name'          => "Sex",
+        'description'   => "The sex of the fish if known.",
+        'order'         => 26
+    ),
+    array(
+        'name'          => "Age",
+        'description'   => "The age of the fish if known.",
+        'order'         => 27
+    ),
+    array(
+        'name'          => "Modification",
+        'description'   => "Things that affect the integrity of the bone.",
+        'order'         => 28
+    ),
+    array(
+        'name'          => "Institution",
+        'description'   => "Where the bones used in each image are held.",
+        'order'         => 29
+    )
 );
