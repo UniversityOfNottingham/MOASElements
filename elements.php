@@ -97,7 +97,7 @@ $elements = array(
         'order'         => 18
     ),
     array(
-        'name'          => "Distribution",
+        'name'          => "Geographical Range",
         'description'   => "The regions of the world where the fish are commonly found.",
         'order'         => 19
     ),
@@ -152,7 +152,7 @@ $elements = array(
         'order'         => 28
     ),
     array(
-        'name'          => "Institution",
+        'name'          => "Lending Institution",
         'description'   => "Where the bones used in each image are held.",
         'order'         => 29
     )
