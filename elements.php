@@ -155,5 +155,15 @@ $elements = array(
         'name'          => "Lending Institution",
         'description'   => "Where the bones used in each image are held.",
         'order'         => 29
+    ),
+    array(
+        'name'          => "Venue",
+        'description'   => "The where the workshop took place.",
+        'order'         => 30
+    ),
+    array(
+        'name'          => "Presenter",
+        'description'   => "The presenter of the workshop.",
+        'order'         => 31
     )
 );
