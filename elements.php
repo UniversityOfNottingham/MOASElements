@@ -77,7 +77,7 @@ $elements = array(
         'order'         => 14
     ),
     array(
-        'name'          => "Genus",
+        'name'          => "Family",
         'description'   => "The Latin family name for the fish genus.",
         'order'         => 15
     ),
@@ -102,7 +102,7 @@ $elements = array(
         'order'         => 19
     ),
     array(
-        'name'          => "Bone",
+        'name'          => "Element",
         'description'   => "Which skeletal element (or bone) it is.",
         'order'         => 20
     ),
